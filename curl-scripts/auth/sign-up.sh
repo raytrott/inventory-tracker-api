@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# sh curl-scripts/auth/sign-up.sh
+
 API="http://localhost:4741"
 URL_PATH="/sign-up"
+EMAIL=""
+PASSWORD=""
 
 curl "${API}${URL_PATH}" \
   --include \

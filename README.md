@@ -6,7 +6,7 @@ For this final capstone project from General Assembly, I wanted to focus on furt
 
 ## Links 
 - [Deployed App]()
-- [Frontend Repo]()
+- [Frontend Repo](https://github.com/raytrott/inventory-tracker-client)
 
 ## Technologies and Languages Used
 
