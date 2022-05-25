@@ -17,7 +17,7 @@ const handle404 = customErrors.handle404
 const requireOwnership = customErrors.requireOwnership
 
 // this is middleware that will remove blank fields from `req.body`, e.g.
-// { example: { title: '', text: 'foo' } } -> { example: { text: 'foo' } }
+// { inventory: { name: '', text: 'foo' } } -> { inventory: { text: 'foo' } }
 const removeBlanks = require('../../lib/remove_blank_fields')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
@@ -35,9 +35,9 @@ router.get('/inventories', requireToken, (req, res, next) => {
       // `inventories` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return inventories.map(example => example.toObject())
+      return inventories.map(inventory => inventory.toObject())
     })
-    // respond with status 200 and JSON of the examples
+    // respond with status 200 and JSON of the inventories
     .then(inventories => res.status(200).json({ inventories: inventories }))
     // if an error occurs, pass it to the handler
     .catch(next)
@@ -49,7 +49,7 @@ router.get('/inventories/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Inventory.findById(req.params.id)
     .then(handle404)
-    // if `findById` is succesful, respond with 200 and "example" JSON
+    // if `findById` is succesful, respond with 200 and "inventory" JSON
     .then(inventory => res.status(200).json({ inventory: inventory.toObject() }))
     // if an error occurs, pass it to the handler
     .catch(next)
